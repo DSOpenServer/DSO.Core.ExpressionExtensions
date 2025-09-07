@@ -12,7 +12,7 @@ namespace DSO.Core.ExpressionExtensions
         private static readonly Dictionary<Type, Delegate> _cachedToDictionaryDelegate = new Dictionary<Type, Delegate>();
         private static readonly Dictionary<Type, (Delegate Factory, Type[] ColumnTypes, string[] ColumnNames)> _cachedToDelegateArray = new Dictionary<Type, (Delegate Factory, Type[] ColumnTypes, string[] ColumnNames)>();
 
-        public static Delegate[] ToDelegateArray<T>(this T source, out Type[] ColumnTypes, out string[] ColumnNames) where T : class
+        public static Delegate[] ToDelegateArray<T>(this T source, out Type[] ColumnTypes, out string[] ColumnNames)
         {
             if (source == null)
             {
@@ -42,7 +42,7 @@ namespace DSO.Core.ExpressionExtensions
             return func(source);
         }
 
-        private static Func<T, Delegate[]> CreateDelegateArrayFactory<T>(out Type[] ColumnTypes, out string[] ColumnNames) where T : class
+        private static Func<T, Delegate[]> CreateDelegateArrayFactory<T>(out Type[] ColumnTypes, out string[] ColumnNames)
         {
             var sourceType = typeof(T);
             var sourceParam = Expression.Parameter(sourceType, "source");
